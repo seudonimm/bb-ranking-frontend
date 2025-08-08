@@ -1,0 +1,56 @@
+
+.Ranking-Box-First {
+    display: flex;
+    flex-direction: row;
+    justify-content:space-around;
+    align-items: center;
+    border-radius: 20px;
+    margin: 2vmax;
+    height: 25vmax;
+    box-shadow: 5px 5px 5px black;
+}
+
+.Ranking-Box {
+    display: flex;
+    flex-direction: row;
+    justify-content:space-around;
+    align-items: center;
+    border-radius: 20px;
+    margin: 2vmax;
+    padding: 1vmax;
+    height: 5vmax;
+    box-shadow: 5px 5px 5px black;
+}
+
+.name {
+    font-family:Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    font-size: larger;
+}
+
+.rankScore {
+
+}
+
+.character {
+    display: flex;
+    height: 5vmax;
+    overflow: hidden;
+    align-items: center;
+}
+.image {
+    height: 300px;
+    overflow: hidden;
+}
+
+.big-character {
+    display: flex;
+    height: 15vmax;
+    align-items: center;
+}
+
+.big-image {
+    height: 25vmax;
+}
+
+
