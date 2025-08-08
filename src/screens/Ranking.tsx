@@ -11,7 +11,7 @@ const Ranking:React.FC = () => {
 
     const getRankings = async() => {
         try {
-            const res = await fetch('http://18.219.55.213:5000/');
+            const res = await fetch('https://18.219.55.213:5000/');
             const resJson = await res.json();
             console.log(resJson);
             setRankings(resJson);
