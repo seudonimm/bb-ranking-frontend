@@ -58,18 +58,20 @@ const Ranking:React.FC = () => {
                     and calculated.
                 </div>
             </div>
-            <select
-                onChange={e => handleCharacterSelect(e.target.value)}
-            >
-                <option key={"empty"} value={""}>{"All"}</option>
-                {
-                    character_keys.map((e, index) => {
-                        return(
-                            <option key={index.toString()} value={index}>{e.name}</option>
-                        )
-                    })
-                }
-            </select>
+            <label>
+                Character: <select
+                    onChange={e => handleCharacterSelect(e.target.value)}
+                >
+                    <option key={"empty"} value={""}>{"All"}</option>
+                    {
+                        character_keys.map((e, index) => {
+                            return(
+                                <option key={index.toString()} value={index}>{e.name}</option>
+                            )
+                        })
+                    }
+                </select>
+            </label>
             <div className={"Ranking"}>
                 {filteredRankings.length > 0?<div>
                     {filteredRankings.map((e) =>{

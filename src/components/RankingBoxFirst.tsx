@@ -14,7 +14,14 @@ const RankingBoxFirst:React.FC<Props> = (props) => {
         <div className="Ranking-Box-First">
             <div>{rankCounter}</div>
             <div className="name">{rank.name}</div>
-            <div>{rank.ranking.rankScore.toFixed(2) + "+-" + rank.ranking.deviation.toFixed(2)}</div>
+            <div>
+                <div>
+                    Rating: {rank.ranking.rankScore.toFixed(2) + " ±" + rank.ranking.deviation.toFixed(2)}
+                </div>
+                <div>
+                    Wins: {rank.wins} Losses: {rank.losses}
+                </div>
+            </div>
             <div className="big-character">
                 <img className="big-image"
                     alt={character_keys[`${rank.character_id}`].name}
