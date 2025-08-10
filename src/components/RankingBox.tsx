@@ -13,8 +13,8 @@ const RankingBox:React.FC<Props> = (props) => {
     return(
         <div className="Ranking-Box">
             <div>{rankCounter}</div>
-            <div className="name">{rank.name}</div>
             <div className="rank-and-char">
+            <div className="name">{rank.name}</div>
                 <div>
                     <div>
                         Rating: {rank.ranking.rankScore.toFixed(2) + " ±" + rank.ranking.deviation.toFixed(2)}
