@@ -5,11 +5,15 @@ import RankingBox from '../components/RankingBox';
 import RankingBoxFirst from '../components/RankingBoxFirst';
 import { character_keys } from '../CharacterKeys';
 
+import {ClipLoader} from 'react-spinners';
+
 const Ranking:React.FC = () => {
     let rankCounter = 0;
 
     const [rankings, setRankings] = useState<RankingObject[]>([]);
     const [filteredRankings, setFilteredRankings] = useState<RankingObject[]>([]);
+
+    const [loading, setLoading] = useState<boolean>(false);
 
     const getRankings = async() => {
         try {
@@ -17,6 +21,7 @@ const Ranking:React.FC = () => {
             const resJson = await res.json();
             console.log(resJson);
             setRankings(resJson);
+            setLoading(true);
         } catch (e) {
             console.log(e);
         }
@@ -36,6 +41,7 @@ const Ranking:React.FC = () => {
     useEffect(() => {
         console.log(rankings);
         setFilteredRankings(rankings);
+        setLoading(false);
     }, [rankings]);
 
     useEffect(() => {
@@ -76,6 +82,11 @@ const Ranking:React.FC = () => {
                 </select>
             </label>
             <div className={"Ranking"}>
+                <ClipLoader
+                    color='gray'
+                    loading={loading}
+                    size={50}
+                />
                 {filteredRankings.length > 0?<div>
                     {filteredRankings.map((e) =>{
                         if(e.matches.length != 0){
