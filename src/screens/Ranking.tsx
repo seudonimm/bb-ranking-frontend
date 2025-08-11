@@ -89,7 +89,7 @@ const Ranking:React.FC = () => {
                 />
                 {filteredRankings.length > 0?<div>
                     {filteredRankings.map((e) =>{
-                        if(e.matches.length != 0){
+                        // if(e.matches.length != 0){
                             rankCounter += 1;
                             return(
                                rankCounter==1?
@@ -103,7 +103,8 @@ const Ranking:React.FC = () => {
                                 />
                             )
                         }
-                    })} 
+                    //}
+                    )} 
                 </div>:
                 <div>No rankings for this character</div>
                 }
