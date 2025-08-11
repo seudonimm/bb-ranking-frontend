@@ -25,6 +25,7 @@ const RankingBox:React.FC<Props> = (props) => {
                 </div>
                 <div className="character">
                     <img className="image"
+                        loading="lazy"
                         alt={character_keys[`${rank.character_id}`].name}
                         src={character_keys[`${rank.character_id}`].icon_url}
                     />
