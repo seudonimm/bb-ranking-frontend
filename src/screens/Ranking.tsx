@@ -7,46 +7,42 @@ import { character_keys } from '../CharacterKeys';
 
 import {ClipLoader} from 'react-spinners';
 
+import { 
+    useQuery,
+    useQueryClient
+} from '@tanstack/react-query';
+
 const Ranking:React.FC = () => {
     let rankCounter = 0;
 
-    const [rankings, setRankings] = useState<RankingObject[]>([]);
     const [filteredRankings, setFilteredRankings] = useState<RankingObject[]>([]);
 
-    const [loading, setLoading] = useState<boolean>(false);
-
-    const getRankings = async() => {
-        try {
-            setLoading(true);
-            const res = await fetch('https://bbranking.duckdns.org/');
-            const resJson = await res.json();
-            console.log(resJson);
-            setRankings(resJson);
-        } catch (e) {
-            console.log(e);
-        }
+    const getRankings = async():Promise<RankingObject[]> => {
+        const res = await fetch('https://bbranking.duckdns.org/');
+        return res.json();
     };
 
+    const {isPending, isError, error, data:rankings} = useQuery({
+        queryKey: ['ranks'],
+        queryFn: getRankings
+    })
+
     const handleCharacterSelect = (char:string) => {
-        if(char == ""){
+        if(char == "" && rankings){
             setFilteredRankings(rankings);
-        }else{
+        }else if (rankings){
             setFilteredRankings(rankings.filter((e) => {
                 return e.character_id == Number(char)
-            }))
-
+            }));
         }
     }
 
     useEffect(() => {
         console.log(rankings);
-        setFilteredRankings(rankings);
-        setLoading(false);
+        if(rankings){
+            setFilteredRankings(rankings);
+        }
     }, [rankings]);
-
-    useEffect(() => {
-        getRankings();
-    }, []);
 
     return(
         <div>
@@ -84,7 +80,7 @@ const Ranking:React.FC = () => {
             <div className={"Ranking"}>
                 <ClipLoader
                     color='gray'
-                    loading={loading}
+                    loading={isPending}
                     size={50}
                 />
                 {filteredRankings.length > 0?<div>
