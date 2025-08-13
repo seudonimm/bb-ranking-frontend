@@ -17,11 +17,11 @@ const Ranking:React.FC = () => {
 
     const getRankings = async() => {
         try {
+            setLoading(true);
             const res = await fetch('https://bbranking.duckdns.org/');
             const resJson = await res.json();
             console.log(resJson);
             setRankings(resJson);
-            setLoading(true);
         } catch (e) {
             console.log(e);
         }
