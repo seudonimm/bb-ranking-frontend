@@ -9,7 +9,6 @@ import {ClipLoader} from 'react-spinners';
 
 import { 
     useQuery,
-    useQueryClient
 } from '@tanstack/react-query';
 
 const Ranking:React.FC = () => {
@@ -44,6 +43,12 @@ const Ranking:React.FC = () => {
         }
     }, [rankings]);
 
+    useEffect(() => {
+        if(isError){
+            console.log(error);
+        }
+    }, [error]);
+    
     return(
         <div>
             <div className='instructions'>
