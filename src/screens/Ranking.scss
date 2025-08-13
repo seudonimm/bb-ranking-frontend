@@ -2,11 +2,10 @@
     border: solid 1px;
     padding: 2vmax;
     width: 75vmax;
+    justify-self: center;
     @media (max-width: 600px) {
         width: 75vmin;
     }
-    justify-self: center;
-
 }
 
 .instructions {
@@ -14,10 +13,9 @@
     padding: 2vmax;
     width: 75vmax;
     text-align: left;
+    justify-self: center;
+    margin: 2vmax;
     @media (max-width: 600px) {
         width: 75vmin;
     }
-    justify-self: center;
-    margin: 2vmax;
-
 }

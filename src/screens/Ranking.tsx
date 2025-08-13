@@ -17,11 +17,11 @@ const Ranking:React.FC = () => {
 
     const getRankings = async() => {
         try {
+            setLoading(true);
             const res = await fetch('https://bbranking.duckdns.org/');
             const resJson = await res.json();
             console.log(resJson);
             setRankings(resJson);
-            setLoading(true);
         } catch (e) {
             console.log(e);
         }
@@ -75,7 +75,7 @@ const Ranking:React.FC = () => {
                     {
                         character_keys.map((e, index) => {
                             return(
-                                <option key={index.toString()} value={index}>{e.name}</option>
+                                <option key={index.toString()+e.name} value={index}>{e.name}</option>
                             )
                         })
                     }
