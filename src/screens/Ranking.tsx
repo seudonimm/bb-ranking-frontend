@@ -15,7 +15,7 @@ const Ranking:React.FC = () => {
     let rankCounter = 0;
 
     const [filteredRankings, setFilteredRankings] = useState<RankingObject[]>([]);
-
+    const [currChar, setCurrChar] = useState<number>(0);
     const getRankings = async():Promise<RankingObject[]> => {
         const res = await fetch('https://bbranking.duckdns.org/');
         return res.json();
@@ -30,6 +30,7 @@ const Ranking:React.FC = () => {
         if(char == "" && rankings){
             setFilteredRankings(rankings);
         }else if (rankings){
+            setCurrChar(Number(char));
             setFilteredRankings(rankings.filter((e) => {
                 return e.character_id == Number(char)
             }));
@@ -107,7 +108,12 @@ const Ranking:React.FC = () => {
                     //}
                     )} 
                 </div>:
-                <div>No rankings for this character</div>
+                <div>
+                    <div>No rankings for this character</div>
+                    <img
+                        src={character_keys[currChar].full_body_url}
+                    />
+                </div>
                 }
             </div>
         </div>
