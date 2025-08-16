@@ -2,7 +2,6 @@ import {useState, useEffect} from 'react';
 import "./Ranking.scss";
 import type { RankingObject } from '../types/RankingTypes';
 import RankingBox from '../components/RankingBox';
-import RankingBoxFirst from '../components/RankingBoxFirst';
 import { character_keys } from '../CharacterKeys';
 
 import {ClipLoader} from 'react-spinners';
@@ -91,26 +90,19 @@ const Ranking:React.FC = () => {
                 />
                 {filteredRankings.length > 0?<div>
                     {filteredRankings.map((e) =>{
-                        // if(e.matches.length != 0){
-                            rankCounter += 1;
-                            return(
-                               rankCounter==1?
-                               <RankingBoxFirst key={e.steamID}
-                                    rank={e}
-                                    rankCounter={rankCounter}
-                                />:
-                                <RankingBox key={e.steamID}
-                                    rank={e}
-                                    rankCounter={rankCounter}
-                                />
-                            )
-                        }
-                    //}
-                    )} 
+                        rankCounter += 1;
+                        return(
+                            <RankingBox key={e.steamID}
+                                rank={e}
+                                rankCounter={rankCounter}
+                            />
+                        )
+                    })} 
                 </div>:
                 <div>
                     <div>No rankings for this character</div>
                     <img
+                        alt='character art'
                         src={character_keys[currChar].full_body_url}
                     />
                 </div>
