@@ -57,16 +57,23 @@ const Ranking:React.FC = () => {
                     How To Join
                 </div>
                 <div>
-                    To join the rankings you first need to have the BBCF Improvement Mod which you can find <a href='https://github.com/libreofficecalc/BBCF-Improvement-Mod'>here</a>. 
-                    <br/> 
-                    Once you've followed the instructions to install the mod, go into the settings.ini file and add the following 
-                    to a new line: <code>UploadReplayDataHost = 18.219.55.213</code> then save and close the file.
+                    **UPDATE**
                     <br/>
-                    After doing this make sure the replay upload in the mod is enabled, and in your bbcf settings in the Network Options make sure Saving Replays 
-                    for Ranked, Player, and Lobby Match are all set to Allow.
+                    To join the rankings you now only need to 
+                    <ul>
+                        <li>
+                            Install this modified version of the BBCF Improvement Mod which you can find <a href='https://github.com/seudonimm/BBCF-Improvement-Mod/releases/tag/v.1.0.0'>here</a>
+                        </li>
+                        <li>
+                            Make sure the replay upload in the mod is enabled
+                        </li>
+                        <li>
+                            In your BBCF game settings, in the Network Options, make sure Saving Replays for Ranked, Player, and Lobby Match are all set to Allow.
+                        </li>
+                    </ul>
+                    After that whenever you fight someone else who is also participating in this ranking, results and ratings should be automatically uploaded and calculated.
                     <br/> 
-                    After that whenever you fight someone else who is also participating in this ranking, results and ratings should be automatically uploaded 
-                    and calculated.
+                    If you previously changed the settings.ini file to include <code>UploadReplayDataHost = 18.219.55.213</code> you can remove or change this line back if you want to be able to toggle the ranking on or off.
                 </div>
             </div>
             <label>
