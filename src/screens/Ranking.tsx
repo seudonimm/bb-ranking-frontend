@@ -43,6 +43,10 @@ const Ranking:React.FC = () => {
             setFilteredRankings(rankings);
         }
     }, [rankings]);
+    useEffect(() => {
+        console.log(filteredRankings);
+
+    }, [filteredRankings]);
 
     useEffect(() => {
         if(isError){
@@ -98,30 +102,29 @@ const Ranking:React.FC = () => {
                     loading={isPending}
                     size={50}
                 />
-                {filteredRankings.length > 0?<div>
-                    {filteredRankings.map((e) =>{
-                        // if(e.matches.length != 0){
+                {filteredRankings.length <= 0?<div>
+                    <div>No rankings for this character</div>
+                    <img
+                        src={character_keys[currChar].full_body_url}
+                    />
+
+                </div>:
+                <div>
+                    {filteredRankings.map((e,index) =>{
                             rankCounter += 1;
                             return(
                                rankCounter==1?
-                               <RankingBoxFirst key={e.steamID}
+                               <RankingBoxFirst key={e.steamID+index}
                                     rank={e}
                                     rankCounter={rankCounter}
                                 />:
-                                <RankingBox key={e.steamID}
+                                <RankingBox key={e.steamID+index}
                                     rank={e}
                                     rankCounter={rankCounter}
                                 />
                             )
                         }
-                    //}
                     )} 
-                </div>:
-                <div>
-                    <div>No rankings for this character</div>
-                    <img
-                        src={character_keys[currChar].full_body_url}
-                    />
                 </div>
                 }
             </div>
