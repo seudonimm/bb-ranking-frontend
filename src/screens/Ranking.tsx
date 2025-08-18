@@ -74,6 +74,8 @@ const Ranking:React.FC = () => {
                     After that whenever you fight someone else who is also participating in this ranking, results and ratings should be automatically uploaded and calculated.
                     <br/> 
                     If you previously changed the settings.ini file to include <code>UploadReplayDataHost = 18.219.55.213</code> you can remove or change this line back if you want to be able to toggle the ranking on or off.
+                    <br/> 
+                    Rankings were previously not updating due to an error, they should be working now
                 </div>
             </div>
             <label>
