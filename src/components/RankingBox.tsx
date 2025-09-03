@@ -6,7 +6,7 @@ import { Link } from "@tanstack/react-router";
 
 interface Props{
     rank:RankingObject
-    rankCounter:number
+    rankCounter?:number
 }
 
 const RankingBox:React.FC<Props> = (props) => {

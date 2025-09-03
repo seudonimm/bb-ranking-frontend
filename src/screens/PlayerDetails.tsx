@@ -94,7 +94,7 @@ const PlayerDetails:React.FC<Props> = (props) => {
                         <div className="char-info"
                             key={index+e.character_id}
                         >
-                            <RankingBox rank={e} rankCounter={2}/>
+                            <RankingBox rank={e}/>
                         </div>
                     )
                 })}
