@@ -8,7 +8,7 @@ export interface RankingObject {
         rankScore:number
         deviation:number
     }
-    steamID:number
+    steamID:string
 };
 
 export interface Match {
@@ -22,4 +22,6 @@ export interface Match {
     recorder:string
     recorder_steamid64:string
     winner:number
+    filename:string
+    rankScore:number
 }
