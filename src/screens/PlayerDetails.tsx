@@ -1,4 +1,4 @@
-import { useState, useEffect, useMemo, useCallback } from "react";
+import { useState, useEffect, useCallback } from "react";
 import type { RankingObject, Match } from "../types/RankingTypes";
 import './PlayerDetails.scss';
 
