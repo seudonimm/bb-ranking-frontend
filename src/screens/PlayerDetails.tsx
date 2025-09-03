@@ -1,7 +1,15 @@
 import { useState, useEffect, useMemo, useCallback } from "react";
 import type { RankingObject, Match } from "../types/RankingTypes";
+import './PlayerDetails.scss';
 
 import { character_keys } from "../CharacterKeys";
+import RankingBox from "../components/RankingBox";
+import MatchBox from "../components/MatchBox";
+import { useQuery } from "@tanstack/react-query";
+import { RingLoader } from "react-spinners";
+import { Link } from "@tanstack/react-router";
+import Header from "../components/Header";
+import SubHeader from "../components/SubHeader";
 
 interface PlayerInfoType {
     playerRankRes: RankingObject[]
@@ -20,16 +28,19 @@ interface Props {
 const PlayerDetails:React.FC<Props> = (props) => {
     const {steamID} = props;
 
-    const [playerInfo, setPlayerInfo] = useState<PlayerInfoType>();
     const [mostPlayedCharacter, setMostPlayedCharacter] = useState<number>(0);
+    const [matches, setMatches] = useState<Match[]>();
 
-    const getDetails = async() => {
+    const getDetails = async():Promise<PlayerInfoType> => {
         const res = await fetch(`https://bbranking.duckdns.org/player/${steamID}`);
-        // const res = await fetch(`http://localhost:5000/player/${steamID}`);
-        const resJson = await res.json();
-        console.log(resJson);
-        setPlayerInfo(resJson);
+        return await res.json();
+
     }
+
+    const {data:playerInfo, isPending, error} = useQuery({
+        queryKey:[steamID],
+        queryFn: getDetails
+    });
 
     const getMostPlayedCharacter = useCallback(() => {
         let mostPlayed = 0;
@@ -42,37 +53,68 @@ const PlayerDetails:React.FC<Props> = (props) => {
     },[playerInfo]);
 
     useEffect(() => {
-        getDetails();
-    }, []);
+        getMostPlayedCharacter();
+        if(playerInfo?.playerRes.matches){
+            setMatches(playerInfo.playerRes.matches.reverse());
+        }
+
+    }, [playerInfo]);
 
     useEffect(() => {
-        getMostPlayedCharacter()
-    }, [playerInfo]);
+        console.log(error);
+    }, [error]);
 
     return(
         <div>
-            <div>
-                {playerInfo?.playerRes.names[0]}
+            <Link
+                to={'/'}
+            >
+                Back to Rankings
+            </Link>
+            <Header
+                text={playerInfo?.playerRes.names[0]?playerInfo?.playerRes.names[0]:""}
+            />
+            <div className="name-and-char">
+                {/* <div>
+                    {playerInfo?.playerRes.names[0]}
+                </div> */}
+                {!isPending?<img className="char-image"
+                    alt="most-played-character-image"
+                    src={character_keys[mostPlayedCharacter].full_body_url}
+                />:
+                <RingLoader/>
+                }
             </div>
-            <img
-                src={character_keys[mostPlayedCharacter].full_body_url}
+            <SubHeader
+                text="Characters Played"
             />
             <div>
-                {playerInfo?.playerRes.characters.map((e:number, index) => {
-                    if(e > 0){
-                        return(
-                            <div key={index+character_keys[index].name}>
-                                {character_keys[index].name}
-                            </div>
-                        )
-                    }
+                {playerInfo?.playerRankRes.map((e, index) => {
+                    return(
+                        <div className="char-info"
+                            key={index+e.character_id}
+                        >
+                            <RankingBox rank={e} rankCounter={2}/>
+                        </div>
+                    )
                 })}
             </div>
+            <SubHeader
+                text="Recent Matches"
+            />
             <div>
-                {playerInfo?.playerRes.matches.map((e, index) => {
+                {matches?.map((e, index) => {
                     return(
-                        <div key={e.date1.toString()}>
-                            {e.p1_name}
+                        <div className="match"
+                            key={e.date1.toString()+index}
+                        >
+                            <MatchBox name={e.p1_name} char={e.p1_toon} steamID={e.p1_steamid64} winner={e.winner==0}/>
+                            {/* <a href={`http://50.118.225.175/uploads/${e.filename}`} target="_blank">Download Replay</a> */}
+                            <div>
+                                <div>{new Date(e.date1).toLocaleDateString()}</div>
+                                <div>{new Date(e.date1).toLocaleTimeString()}</div>
+                            </div>
+                            <MatchBox name={e.p2_name} char={e.p2_toon} steamID={e.p2_steamid64} winner={e.winner==1}/>
                         </div>
                     )
                 })}

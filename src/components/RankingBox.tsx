@@ -15,7 +15,7 @@ const RankingBox:React.FC<Props> = (props) => {
     return(
         <div className={rankCounter==1?"Ranking-Box-First":"Ranking-Box"}>
             <div>{rankCounter}</div>
-            <div className="rank-and-char">
+            <div className={rankCounter==1?"big-rank-and-char":"rank-and-char"}>
                 <Link className="name"
                     to="/player/$steamID"
                     params={{steamID:rank.steamID}}
@@ -32,7 +32,7 @@ const RankingBox:React.FC<Props> = (props) => {
                     </div>
                 </div>
                 <div className={rankCounter==1?"big-character":"character"}>
-                    <img className="image"
+                    <img className={rankCounter==1?"big-image":"image"}
                         loading="lazy"
                         alt={character_keys[`${rank.character_id}`].name}
                         src={rankCounter==1?

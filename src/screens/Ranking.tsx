@@ -2,6 +2,7 @@ import {useState, useEffect} from 'react';
 import "./Ranking.scss";
 import type { RankingObject } from '../types/RankingTypes';
 import RankingBox from '../components/RankingBox';
+import Header from '../components/Header';
 import { character_keys } from '../CharacterKeys';
 
 import {ClipLoader} from 'react-spinners';
@@ -51,6 +52,9 @@ const Ranking:React.FC = () => {
     
     return(
         <div>
+            <Header
+                text='Blazblue Centralfiction Player Rankings'
+            />
             <div className='instructions'>
                 <div>
                     How To Join
@@ -89,10 +93,10 @@ const Ranking:React.FC = () => {
                     size={50}
                 />
                 {filteredRankings.length > 0?<div>
-                    {filteredRankings.map((e) =>{
+                    {filteredRankings.map((e,index) =>{
                         rankCounter += 1;
                         return(
-                            <RankingBox key={e.steamID}
+                            <RankingBox key={e.steamID+index}
                                 rank={e}
                                 rankCounter={rankCounter}
                             />

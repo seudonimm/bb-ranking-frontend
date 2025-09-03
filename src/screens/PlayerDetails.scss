@@ -1,0 +1,22 @@
+@mixin display (){
+    display: flex;
+    flex-direction: row;
+}
+
+.name-and-char {
+    justify-content: space-around;
+    align-items: center;
+    @include display()
+}
+
+.char-image {
+    height: 300px;
+}
+
+.match {
+    border: 1px solid ;
+    border-radius: 20px;
+    margin: 2vmax;
+    justify-content: center;
+    @include display()
+}

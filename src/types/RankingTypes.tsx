@@ -22,4 +22,6 @@ export interface Match {
     recorder:string
     recorder_steamid64:string
     winner:number
+    filename:string
+    rankScore:number
 }

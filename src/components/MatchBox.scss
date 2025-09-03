@@ -1,0 +1,17 @@
+@mixin character-box($bg:blue){
+    display: flex;
+    height: 200px;
+    overflow: hidden;
+    align-items: center;
+    margin: 1vmax;
+    background-color: $bg;
+    flex-direction: column;
+}
+
+.character-match-box-winner{
+    @include character-box(rgba(0, 128, 0, 0.3))
+}
+
+.character-match-box-loser{
+    @include character-box(rgba(255, 0, 0, 0.3))   
+}

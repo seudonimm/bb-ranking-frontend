@@ -47,13 +47,32 @@
     }
 }
 
-.character {
+.big-rank-and-char {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    padding: 1vmax;
+}
+
+@mixin character-box(){
     display: flex;
     height: 5vmax;
     overflow: hidden;
     align-items: center;
     margin: 1vmax;
+
 }
+.character {
+    @include character-box()
+}
+
+.match-character {
+    flex-direction: column;
+    @include character-box()
+}
+
 .image {
     height: 300px;
     overflow: hidden;
